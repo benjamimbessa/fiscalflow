@@ -47,7 +47,7 @@ Every significant decision is recorded as an ADR in [`docs/adr/`](docs/adr/). St
 
 ## Author
 
-**Benjamim Goulart Bessa** — Senior Software Engineer. 25 years in enterprise software; principal architect of a nationwide retail ERP/POS platform (C#/.NET, Angular, SQL Server). [LinkedIn](https://www.linkedin.com/in/benjamimgoulart)
+**Benjamim Goulart Bessa** — Senior Software Engineer. 25 years in enterprise software; principal architect of a nationwide retail ERP/POS platform (C#/.NET, Angular, SQL Server). [LinkedIn](https://www.linkedin.com/in/benjamimgoulartbessa)
 
 ## License
 
