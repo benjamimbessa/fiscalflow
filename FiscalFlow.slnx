@@ -1,0 +1,12 @@
+<Solution>
+  <Folder Name="/src/" />
+  <Folder Name="/src/Orders/">
+    <Project Path="src/Orders/FiscalFlow.Orders.Api/FiscalFlow.Orders.Api.csproj" />
+    <Project Path="src/Orders/FiscalFlow.Orders.Application/FiscalFlow.Orders.Application.csproj" />
+    <Project Path="src/Orders/FiscalFlow.Orders.Domain/FiscalFlow.Orders.Domain.csproj" />
+    <Project Path="src/Orders/FiscalFlow.Orders.Infrastructure/FiscalFlow.Orders.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/src/Orders/FiscalFlow.Orders.Tests/">
+    <Project Path="src/Orders/FiscalFlow.Orders.Tests/FiscalFlow.Orders.Test.csproj" />
+  </Folder>
+</Solution>
