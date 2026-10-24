@@ -1,11 +1,11 @@
 # Roadmap
 
 ## Phase 1 — Foundations (week 1)
-- [ ] Solution scaffolding (.NET 8, central package management)
+- [x] Solution scaffolding (.NET 8, central package management)
 - [ ] Orders service: tactical DDD (Order aggregate, domain events, value objects)
 - [ ] CQRS with MediatR — commands, queries, pipeline behaviors (validation, logging)
 - [ ] PostgreSQL persistence with EF Core migrations
-- [ ] docker-compose local environment (PostgreSQL, LocalStack, DynamoDB Local)
+- [x] docker-compose local environment (PostgreSQL, LocalStack, DynamoDB Local)
 - [ ] CI pipeline: build + unit tests on every PR
 
 ## Phase 2 — Event-driven core (week 2)

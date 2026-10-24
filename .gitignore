@@ -7,3 +7,4 @@ appsettings.*.local.json
 .terraform/
 *.tfstate*
 .env
+.claude/worktrees/
