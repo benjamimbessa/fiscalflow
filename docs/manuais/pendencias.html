@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="generator" content="md2html">
+<meta name="md2html-template" content="1">
+<meta name="md2html-source-sha256" content="d23520d501157aef2f0d54b71a01c76129a76caec676fffc2614109c64f74d13">
+<title>Pendências: FiscalFlow</title>
+<style>
+:root{--bg:#f6f8f7;--surface:#ffffff;--text:#1d2420;--muted:#5b6660;--border:#dfe5e1;--accent:#12663d;
+--accent-soft:#e6f2ec;--code-bg:#f0f3f1;--link:#0f6a3f;--mark:#fff3bf;--shadow:0 1px 3px rgba(0,0,0,.06)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#111714;--surface:#171f1b;--text:#e3e9e5;
+--muted:#9aa7a0;--border:#2a352f;--accent:#3fb37a;--accent-soft:#1c2b23;--code-bg:#1f2924;--link:#6fd3a0;--mark:#4a4220;
+--shadow:none}}
+:root[data-theme="dark"]{--bg:#111714;--surface:#171f1b;--text:#e3e9e5;--muted:#9aa7a0;--border:#2a352f;--accent:#3fb37a;
+--accent-soft:#1c2b23;--code-bg:#1f2924;--link:#6fd3a0;--mark:#4a4220;--shadow:none}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--text);font:16px/1.65 "Segoe UI",system-ui,-apple-system,Roboto,"Helvetica Neue",Arial,sans-serif}
+.topbar{background:var(--surface);border-bottom:3px solid var(--accent);box-shadow:var(--shadow)}
+.topbar-inner{max-width:1240px;margin:0 auto;padding:14px 24px;display:flex;gap:16px;align-items:center;justify-content:space-between}
+.crumb{color:var(--muted);font-size:13px;overflow-wrap:anywhere}
+.crumb strong{color:var(--text);font-weight:600}
+.meta{color:var(--muted);font-size:12px;white-space:nowrap}
+.meta a{color:var(--muted)}
+.theme-toggle{border:1px solid var(--border);background:transparent;color:var(--text);border-radius:6px;padding:4px 10px;cursor:pointer;font:inherit;font-size:12px;margin-left:10px}
+.layout{max-width:1240px;margin:0 auto;padding:28px 24px 64px;display:grid;gap:32px}
+.layout.with-toc{grid-template-columns:260px minmax(0,1fr)}
+.layout.no-toc{grid-template-columns:minmax(0,1fr)}
+.toc{position:sticky;top:16px;align-self:start;max-height:calc(100vh - 32px);overflow:auto;font-size:14px}
+.toc summary{font-weight:600;cursor:pointer;color:var(--accent);margin-bottom:8px;text-transform:uppercase;font-size:12px;letter-spacing:.06em}
+.toc ol{list-style:none;margin:0;padding:0;border-left:2px solid var(--border)}
+.toc li a{display:block;padding:4px 0 4px 12px;color:var(--muted);text-decoration:none;border-left:2px solid transparent;margin-left:-2px;line-height:1.35}
+.toc li.l3 a{padding-left:26px;font-size:13px}
+.toc li a:hover,.toc li a.active{color:var(--accent);border-left-color:var(--accent)}
+article{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:40px 48px;box-shadow:var(--shadow);min-width:0;max-width:920px;overflow-wrap:break-word}
+.layout.no-toc article{margin:0 auto;width:100%}
+article>:first-child{margin-top:0}
+h1,h2,h3,h4,h5,h6{line-height:1.3;margin:1.8em 0 .6em;scroll-margin-top:16px}
+h1{font-size:2em;color:var(--accent);margin-top:0}
+h2{font-size:1.45em;padding-bottom:.3em;border-bottom:1px solid var(--border)}
+h3{font-size:1.2em}
+h4{font-size:1.05em}
+p,ul,ol,dl,blockquote,pre,.table-wrap{margin:0 0 1em}
+a{color:var(--link);text-underline-offset:2px}
+ul,ol{padding-left:1.6em}
+li+li{margin-top:.25em}
+li.task{list-style:none;margin-left:-1.3em}
+li.task input{margin-right:.4em;accent-color:var(--accent)}
+blockquote{margin-left:0;padding:.6em 1em;border-left:4px solid var(--accent);background:var(--accent-soft);border-radius:0 6px 6px 0;color:var(--text)}
+blockquote>:last-child{margin-bottom:0}
+code{font-family:"Cascadia Code",Consolas,"SFMono-Regular",Menlo,monospace;font-size:.88em;background:var(--code-bg);padding:.12em .38em;border-radius:4px}
+pre{background:var(--code-bg);border:1px solid var(--border);border-radius:8px;padding:14px 16px;overflow:auto;line-height:1.5}
+pre code{background:none;padding:0;font-size:.85em}
+pre.mermaid{background:var(--surface);text-align:center}
+.table-wrap{overflow-x:auto;border:1px solid var(--border);border-radius:8px}
+table{border-collapse:collapse;width:100%;font-size:.93em}
+th,td{padding:8px 12px;border-bottom:1px solid var(--border);text-align:left;vertical-align:top}
+th{background:var(--accent-soft);font-weight:600}
+tr:last-child td{border-bottom:0}
+tbody tr:nth-child(even) td{background:color-mix(in srgb,var(--code-bg) 45%,transparent)}
+hr{border:0;border-top:1px solid var(--border);margin:2em 0}
+img{max-width:100%;height:auto}
+mark{background:var(--mark);color:inherit}
+details{margin-bottom:1em}
+.front-matter{display:grid;grid-template-columns:max-content 1fr;gap:4px 16px;font-size:.9em;background:var(--accent-soft);border-radius:8px;padding:12px 16px}
+.front-matter dt{font-weight:600}
+.front-matter dd{margin:0}
+.footer{max-width:1240px;margin:0 auto;padding:0 24px 32px;color:var(--muted);font-size:12px}
+@media (max-width:960px){.layout.with-toc{grid-template-columns:minmax(0,1fr)}.toc{position:static;max-height:none}
+.toc details:not([open]) summary{margin-bottom:0}article{padding:28px 24px}}
+@media (max-width:600px){.topbar-inner{flex-direction:column;align-items:flex-start;padding:12px 16px}.meta{white-space:normal}
+.layout{padding:16px 16px 48px}article{padding:20px 16px;border-radius:8px}h1{font-size:1.6em}}
+@media print{.topbar,.toc,.theme-toggle,.footer{display:none}.layout{display:block;padding:0}article{border:0;box-shadow:none;padding:0;max-width:none}
+body{background:#fff;color:#000}a{color:#000}}
+</style>
+</head>
+<body>
+<header class="topbar"><div class="topbar-inner">
+<div class="crumb">benjamim / fiscalflow / .claude / worktrees / definicoes-manuais / docs / manuais / <strong>pendencias.md</strong></div>
+<div class="meta">Gerado de <a href="pendencias.md">pendencias.md</a> em 2026-10-22 14:10<button class="theme-toggle" type="button">Tema escuro</button></div>
+</div></header>
+<div class="layout with-toc">
+<nav class="toc" aria-label="Sumário"><details open><summary>Sumário</summary><ol><li class="l2"><a href="#como-usar">Como usar</a></li>
+<li class="l2"><a href="#abertas">Abertas</a></li>
+<li class="l2"><a href="#resolvidas">Resolvidas</a></li></ol></details></nav>
+<article>
+
+<h1 id="pendências-fiscalflow">Pendências: FiscalFlow</h1>
+<p>Registro do que ficou por fazer, por conferir ou por decidir no projeto <code>fiscalflow</code>. Cada projeto tem o seu próprio arquivo de pendências, com numeração própria.</p>
+<h2 id="como-usar">Como usar</h2>
+<ul>
+<li><strong>Toda tarefa neste projeto termina conferindo este registro.</strong> O que não foi resolvido nela entra aqui, no mesmo commit da entrega. Isso vale para o que ficou sem testar ou sem validar, as decisões que dependem do Benjamim, os defeitos achados fora do escopo, o ambiente que precisa de ajuste e os passos que só o Benjamim pode dar.</li>
+<li><strong>Uma pendência por linha</strong>, na tabela, com:
+<ul>
+<li><code>Id</code> sequencial do projeto (<code>P-0001</code>, <code>P-0002</code>…; o próximo é o maior + 1, contando as Resolvidas);</li>
+<li>a data em que foi aberta;</li>
+<li>o projeto (<code>fiscalflow</code>; outro nome só quando a pendência alcança mais de um projeto);</li>
+<li>o que falta e por quê, em uma ou duas frases;</li>
+<li>quem resolve (<strong>Benjamim</strong> quando é decisão ou acesso dele, <strong>Claude</strong> quando é trabalho que uma sessão pode fazer);</li>
+<li>a origem (tarefa, branch, commit ou documento).</li>
+</ul>
+</li>
+<li><strong>Ordem crescente de <code>Id</code> em todas as tabelas</strong>, inclusive em Resolvidas. Quem abre ou move uma linha a põe no lugar dela, nunca no fim.</li>
+<li><strong>Resolveu, move</strong> a linha para <a href="#resolvidas">Resolvidas</a>, com a data e o commit (ou o branch) da solução. Pendência não é apagada: se deixou de fazer sentido, vai para Resolvidas com o motivo.</li>
+<li><strong>Número repetido no merge.</strong> Branches que abrem pendências ao mesmo tempo podem pegar o mesmo <code>Id</code>. No merge, fica com o número quem chegou primeiro ao branch principal; a outra ganha o próximo livre, a origem anota o número antigo (&quot;aberta como P-NNNN&quot;) e as referências a ela neste arquivo são acertadas.</li>
+<li><strong>Pendência que alcança outro projeto</strong> é aberta no projeto onde o trabalho será feito, e a origem cita o outro. Uma sessão registra só no arquivo do projeto em que trabalha; o que descobre sobre outro projeto vai para o relatório final, na seção <strong>Pendências</strong>, com a linha pronta para o arquivo de lá.</li>
+<li>Este arquivo é a fonte; o <code>.html</code> irmão é gerado.</li>
+</ul>
+<h2 id="abertas">Abertas</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Id</th>
+<th>Aberta</th>
+<th>Projeto</th>
+<th>Pendência</th>
+<th>Quem</th>
+<th>Origem</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>P-0001</td>
+<td>22/10/2026</td>
+<td>fiscalflow</td>
+<td><strong>Versão do .NET divergente.</strong> Todos os <code>.csproj</code> estão em <code>net10.0</code>, mas o CI (<code>.github/workflows/ci.yml</code>) instala só o SDK <code>8.0.x</code>, o que deve fazer o build do GitHub falhar com <code>NETSDK1045</code>; o diagrama do <code>README.md</code> e o <code>ROADMAP.md</code> ainda dizem .NET 8. Decidir a versão-alvo e alinhar CI, README e ROADMAP</td>
+<td>Benjamim</td>
+<td>branch <code>docs/definicoes-manuais</code> (seção Run locally do README)</td>
+</tr>
+<tr>
+<td>P-0002</td>
+<td>22/10/2026</td>
+<td>fiscalflow</td>
+<td><strong>Conferir os comandos de verificação da infraestrutura</strong> do README (<code>pg_isready</code>, <code>docker compose ps dynamodb</code>, <code>/_localstack/health</code>) com <code>docker compose up -d</code> rodando. Só <code>dotnet test</code> foi executado (1 teste, <code>Passed!</code>); os containers não foram subidos</td>
+<td>Claude</td>
+<td>branch <code>docs/definicoes-manuais</code></td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="resolvidas">Resolvidas</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Id</th>
+<th>Aberta</th>
+<th>Projeto</th>
+<th>Pendência</th>
+<th>Resolvida</th>
+<th>Solução</th>
+</tr>
+</thead>
+</table></div>
+
+</article>
+</div>
+<footer class="footer">Versão HTML gerada automaticamente a partir do Markdown. Para alterar, edite o arquivo .md.</footer>
+<script>
+(function(){var root=document.documentElement,key='md2html-theme';
+try{var saved=localStorage.getItem(key);if(saved)root.dataset.theme=saved;}catch(e){}
+var btn=document.querySelector('.theme-toggle');
+function dark(){return root.dataset.theme==='dark'||(!root.dataset.theme&&matchMedia('(prefers-color-scheme: dark)').matches);}
+function label(){if(btn)btn.textContent=dark()?'Tema claro':'Tema escuro';}
+label();
+if(btn)btn.addEventListener('click',function(){root.dataset.theme=dark()?'light':'dark';
+try{localStorage.setItem(key,root.dataset.theme);}catch(e){}label();});
+var links=[].slice.call(document.querySelectorAll('.toc a'));
+if(links.length&&'IntersectionObserver' in window){var map={};links.forEach(function(a){map[a.getAttribute('href').slice(1)]=a;});
+var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){
+links.forEach(function(a){a.classList.remove('active');});var a=map[e.target.id];if(a)a.classList.add('active');}});},
+{rootMargin:'0px 0px -75% 0px'});
+Object.keys(map).forEach(function(id){var el=document.getElementById(id);if(el)obs.observe(el);});}
+if(matchMedia('(max-width:960px)').matches){var d=document.querySelector('.toc details');if(d)d.removeAttribute('open');}
+})();
+</script>
+
+</body>
+</html>

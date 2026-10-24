@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="generator" content="md2html">
 <meta name="md2html-template" content="1">
-<meta name="md2html-source-sha256" content="a9efd116ecda2b4fe858e86508f48a39d23df82161c9b7c81329a9f19d8a7a0b">
+<meta name="md2html-source-sha256" content="5efc482ac37bd39919db1ca08508a0d4de8b508d70c314a33012b87402565160">
 <title>FiscalFlow</title>
 <style>
 :root{--bg:#f6f8f7;--surface:#ffffff;--text:#1d2420;--muted:#5b6660;--border:#dfe5e1;--accent:#12663d;
@@ -78,14 +78,15 @@ body{background:#fff;color:#000}a{color:#000}}
 </head>
 <body>
 <header class="topbar"><div class="topbar-inner">
-<div class="crumb">benjamim / fiscalflow / <strong>README.md</strong></div>
-<div class="meta">Gerado de <a href="README.md">README.md</a> em 2026-10-11 07:24<button class="theme-toggle" type="button">Tema escuro</button></div>
+<div class="crumb">benjamim / fiscalflow / .claude / worktrees / definicoes-manuais / <strong>README.md</strong></div>
+<div class="meta">Gerado de <a href="README.md">README.md</a> em 2026-10-22 14:10<button class="theme-toggle" type="button">Tema escuro</button></div>
 </div></header>
 <div class="layout with-toc">
 <nav class="toc" aria-label="Sumário"><details open><summary>Sumário</summary><ol><li class="l2"><a href="#why-this-project">Why this project</a></li>
 <li class="l2"><a href="#architecture">Architecture</a></li>
 <li class="l3"><a href="#bounded-contexts">Bounded contexts</a></li>
 <li class="l3"><a href="#platform">Platform</a></li>
+<li class="l2"><a href="#run-locally">Run locally</a></li>
 <li class="l2"><a href="#design-decisions">Design decisions</a></li>
 <li class="l2"><a href="#author">Author</a></li>
 <li class="l2"><a href="#license">License</a></li></ol></details></nav>
@@ -154,8 +155,50 @@ body{background:#fff;color:#000}a{color:#000}}
 <li><strong>Messaging:</strong> SNS topics + SQS queues (LocalStack for local dev)</li>
 <li><strong>CI/CD:</strong> GitHub Actions — build, test, and deploy on merge to <code>main</code></li>
 <li><strong>Observability:</strong> OpenTelemetry traces/metrics/logs → CloudWatch</li>
-<li><strong>Local dev:</strong> <code>docker compose up</code> brings up PostgreSQL, DynamoDB Local, LocalStack, and all services</li>
+<li><strong>Local dev:</strong> <code>docker compose up</code> brings up PostgreSQL, DynamoDB Local and LocalStack. The services are not in the compose file yet: today they run with <code>dotnet run</code> (see <a href="#run-locally">Run locally</a>)</li>
 </ul>
+<h2 id="run-locally">Run locally</h2>
+<p>What exists in the code today: the infrastructure containers and the Orders API skeleton (the ASP.NET template, with no database access yet).</p>
+<p><strong>Requirements:</strong> Docker with Compose v2 (<code>docker compose version</code> answers <code>Docker Compose version v2.…</code>) and the .NET 10 SDK, because every project targets <code>net10.0</code> (<code>dotnet --list-sdks</code> must list a <code>10.0.…</code> line; with an older SDK the build stops with <code>NETSDK1045</code>).</p>
+<p><strong>1. Infrastructure.</strong> From the repository root:</p>
+<pre><code class="language-powershell">docker compose up -d
+</code></pre>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Service</th>
+<th>Host port</th>
+<th>Credentials (fixed in <code>docker-compose.yml</code>, local use only)</th>
+<th>How to check</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>postgres</code> (PostgreSQL 16)</td>
+<td><code>5432</code></td>
+<td>user <code>fiscalflow</code>, password <code>dev_only</code>, database <code>orders</code>; data kept in the <code>pgdata</code> volume</td>
+<td><code>docker compose exec postgres pg_isready -U fiscalflow -d orders</code> answers <code>accepting connections</code></td>
+</tr>
+<tr>
+<td><code>dynamodb</code> (DynamoDB Local, <code>-sharedDb</code>)</td>
+<td><code>8000</code></td>
+<td>none (DynamoDB Local accepts any access key)</td>
+<td><code>docker compose ps dynamodb</code> shows the container <code>Up</code></td>
+</tr>
+<tr>
+<td><code>localstack</code> (only <code>sns</code> and <code>sqs</code>)</td>
+<td><code>4566</code></td>
+<td>none</td>
+<td><code>curl http://localhost:4566/_localstack/health</code> lists <code>&quot;sns&quot;</code> and <code>&quot;sqs&quot;</code> as <code>available</code> or <code>running</code></td>
+</tr>
+</tbody>
+</table></div>
+<p>Nothing to fill in: the values live in <code>docker-compose.yml</code>. If a port is already taken on the host, <code>docker compose up</code> stops with <code>port is already allocated</code>; free the port or change the left side of the <code>ports:</code> mapping (for example <code>&quot;5433:5432&quot;</code>). <code>docker compose down -v</code> stops everything and erases the <code>pgdata</code> volume.</p>
+<p><strong>2. Orders API.</strong></p>
+<pre><code class="language-powershell">dotnet run --project src/Orders/FiscalFlow.Orders.Api --launch-profile http
+</code></pre>
+<p>The <code>http</code> profile (<code>Properties/launchSettings.json</code>) listens on <code>http://localhost:5261</code> with <code>ASPNETCORE_ENVIRONMENT=Development</code>; the <code>https</code> profile adds <code>https://localhost:7105</code>. The API reads no connection string or other setting of its own yet (<code>appsettings.json</code> only has logging). Check: <code>curl http://localhost:5261/weatherforecast</code> returns a JSON array with 5 items, and <code>http://localhost:5261/openapi/v1.json</code> returns the OpenAPI document (Development only).</p>
+<p><strong>3. Tests.</strong> <code>dotnet test</code> from the root builds <code>FiscalFlow.slnx</code> and runs the tests; it ends with <code>Passed!</code> and the test count.</p>
 <h2 id="design-decisions">Design decisions</h2>
 <p>Every significant decision is recorded as an ADR in <a href="docs/adr/"><code>docs/adr/</code></a>. Start with <a href="docs/adr/0001-event-driven-microservices.html">ADR-0001: why event-driven microservices for this domain</a>.</p>
 <h2 id="author">Author</h2>
